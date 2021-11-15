@@ -1,6 +1,7 @@
 
 import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
+import { and } from "sequelize";
 import { Medico } from "../Models/medico.model";
 
 @Injectable()
@@ -12,20 +13,33 @@ export class MedicosService {
     ) { }
 
     async obterTodos(): Promise<Medico[]> {
-        return this.medicoModel.findAll();
+        return this.medicoModel.findAll({
+            where: {
+                ativo: 1
+            }
+        });
     }
 
     async obterUm(id: number): Promise<Medico> {
-        return this.medicoModel.findByPk(id);
+        const { Op } = require("sequelize");
+        return this.medicoModel.findOne({
+            where: {
+                id: id,
+                ativo: 1
+            }
+        });
     }
 
     async obterPorNome(NomeDoMedico: string): Promise<Medico[]> {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                nome: {
-                    [Op.like]: `%${NomeDoMedico}%`
-                }
+                [Op.and]: [{
+                    nome: {
+                        [Op.like]: `%${NomeDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -34,9 +48,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                crm: {
-                    [Op.like]: `%${crmDoMedico}%`
-                }
+                [Op.and]: [{
+                    crm: {
+                        [Op.like]: `%${crmDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -45,9 +62,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                TelefoneFixo: {
-                    [Op.like]: `%${TelefoneFixoDoMedico}%`
-                }
+                [Op.and]: [{
+                    TelefoneFixo: {
+                        [Op.like]: `%${TelefoneFixoDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -56,9 +76,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                TelefoneCelular: {
-                    [Op.like]: `%${TelefoneCelularDoMedico}%`
-                }
+                [Op.and]: [{
+                    TelefoneCelular: {
+                        [Op.like]: `%${TelefoneCelularDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -67,9 +90,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                cep: {
-                    [Op.like]: `%${CepDoMedico}%`
-                }
+                [Op.and]: [{
+                    cep: {
+                        [Op.like]: `%${CepDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -78,9 +104,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                rua: {
-                    [Op.like]: `%${RuaDoMedico}%`
-                }
+                [Op.and]: [{
+                    rua: {
+                        [Op.like]: `%${RuaDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -89,9 +118,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                bairro: {
-                    [Op.like]: `%${BairroDoMedico}%`
-                }
+                [Op.and]: [{
+                    bairro: {
+                        [Op.like]: `%${BairroDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -100,9 +132,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                cidade: {
-                    [Op.like]: `%${CidadeDoMedico}%`
-                }
+                [Op.and]: [{
+                    cidade: {
+                        [Op.like]: `%${CidadeDoMedico}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -111,9 +146,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                estado: {
-                    [Op.like]: `%${CidadeDoEstado}%`
-                }
+                [Op.and]: [{
+                    estado: {
+                        [Op.like]: `%${CidadeDoEstado}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -122,9 +160,12 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                especialidade: {
-                    [Op.like]: `%${EspecialidadeDoEstado}%`
-                }
+                [Op.and]: [{
+                    especialidade: {
+                        [Op.like]: `%${EspecialidadeDoEstado}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
@@ -133,14 +174,18 @@ export class MedicosService {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
             where: {
-                especialidadeSec: {
-                    [Op.like]: `%${EspecialidadeSecDoEstado}%`
-                }
+                [Op.and]: [{
+                    especialidadeSec: {
+                        [Op.like]: `%${EspecialidadeSecDoEstado}%`
+                    },
+                    ativo: 1
+                }]
             }
         });
     }
 
     async criar(medico: Medico): Promise<Medico> {
+        medico.ativo = 1;
         this.medicoModel.create(medico);
 
         return medico;
@@ -155,8 +200,15 @@ export class MedicosService {
     }
 
     async apagar(id: number) {
-        const medico: Medico = await this.obterUm(id);
-        medico.destroy();
+        const medicoObtido: Medico = await this.obterUm(id);
+        if (medicoObtido) {
+            this.medicoModel.update({ ativo: 0 },
+                {
+                    where: {
+                        id: medicoObtido.id
+                    }
+                });
+        }
     }
 
 }

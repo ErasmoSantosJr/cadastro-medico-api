@@ -131,6 +131,12 @@ export class Medico extends Model<Medico> {
     message: 'O parâmetro especialidadeSec é obrigatório'
   })
   especialidadeSec: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  ativo: number;
 }
 
 
