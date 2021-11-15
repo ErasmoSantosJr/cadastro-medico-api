@@ -1,7 +1,8 @@
 
-import { Inject, Injectable } from "@nestjs/common";
+import { HttpStatus, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Medico } from "../Models/medico.model";
+import api from "./correios.service";
 
 @Injectable()
 export class MedicosService {
@@ -185,6 +186,22 @@ export class MedicosService {
 
     async criar(medico: Medico): Promise<Medico> {
         medico.ativo = 1;
+
+        await api.get(`https://viacep.com.br/ws/${medico.cep}/json`)
+            .then((response) => {
+                medico.rua = response.data.logradouro,
+                    medico.bairro = response.data.bairro,
+                    medico.estado = response.data.localidade,
+                    medico.cidade = response.data.uf
+            }
+            )
+            .catch(() => {
+                throw new NotFoundException({
+                    statusCode: HttpStatus.NOT_FOUND,
+                    message: 'Não foi localizado nenhum endereço com o CEP informado'
+                });
+            });
+
         this.medicoModel.create(medico);
 
         return medico;
