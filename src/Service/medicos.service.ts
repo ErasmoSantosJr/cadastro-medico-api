@@ -1,7 +1,6 @@
 
 import { Inject, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import { and } from "sequelize";
 import { Medico } from "../Models/medico.model";
 
 @Injectable()

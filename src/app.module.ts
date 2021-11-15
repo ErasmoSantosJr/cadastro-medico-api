@@ -1,11 +1,14 @@
 
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { FiltroDeExcecaoHttp } from './Common/filtro/filtro-de-excecao-http.filter';
 import { MedicoController } from './Controller/medico-controller';
+import { TransformaRespostaInterceptor } from './core/http/transforma-resposta-interceptador';
 import { Medico } from './Models/medico.model';
 import { MedicosService } from './Service/medicos.service';
 
@@ -25,6 +28,17 @@ import { MedicosService } from './Service/medicos.service';
     SequelizeModule.forFeature([Medico])
   ],
   controllers: [AppController, MedicoController],
-  providers: [AppService, MedicosService],
+
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: FiltroDeExcecaoHttp 
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformaRespostaInterceptor 
+    },
+    AppService,
+    MedicosService],
 })
-export class AppModule {}
+export class AppModule { }

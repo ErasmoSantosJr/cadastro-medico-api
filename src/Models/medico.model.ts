@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString, MaxLength, Min, MinLength } from "class-validator";
+import { Exclude } from "class-transformer";
+import { IsNotEmpty, IsString, MaxLength, Min, MinLength } from "class-validator";
 import { Column, DataType, Model, Table } from "sequelize-typescript";
-import { IsCrmUnico } from "src/Validator/is-crm-unico-validator";
 
 @Table
 export class Medico extends Model<Medico> {
@@ -135,6 +135,9 @@ export class Medico extends Model<Medico> {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+  })
+  @Exclude({
+    toPlainOnly: true
   })
   ativo: number;
 }
