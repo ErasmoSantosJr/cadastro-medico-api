@@ -5,7 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CadastroController } from './Controller/cadastro-controller';
+import { MedicoController } from './Controller/medico-controller';
 import { Medico } from './Models/medico.model';
 import { MedicosService } from './Service/medicos.service';
 
@@ -24,7 +24,7 @@ import { MedicosService } from './Service/medicos.service';
     }),
     SequelizeModule.forFeature([Medico])
   ],
-  controllers: [AppController, CadastroController ],
+  controllers: [AppController, MedicoController],
   providers: [AppService, MedicosService],
 })
 export class AppModule {}

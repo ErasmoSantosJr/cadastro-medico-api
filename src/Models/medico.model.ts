@@ -19,7 +19,13 @@ export class Medico extends Model<Medico> {
     type: DataType.STRING(11),
     allowNull: false,
   })
-  telefone: string;
+  telefoneFixo: string;
+
+  @Column({
+    type: DataType.STRING(11),
+    allowNull: false,
+  })
+  telefoneCelular: string;
 
   @Column({
     type: DataType.STRING(8),
