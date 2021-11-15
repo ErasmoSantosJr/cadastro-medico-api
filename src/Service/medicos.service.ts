@@ -5,6 +5,7 @@ import { Medico } from "../Models/medico.model";
 
 @Injectable()
 export class MedicosService {
+
     constructor(
         @InjectModel(Medico)
         private medicoModel: typeof Medico
@@ -83,7 +84,7 @@ export class MedicosService {
             }
         });
     }
-    
+
     async obterPorBairro(BairroDoMedico: string): Promise<Medico[]> {
         const { Op } = require("sequelize");
         return this.medicoModel.findAll({
