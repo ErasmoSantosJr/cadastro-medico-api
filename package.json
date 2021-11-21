@@ -11,6 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
+    "start:docekr:dev": "npm install && nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -26,9 +27,11 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/sequelize": "^0.1.1",
-    "axios": "^0.21.1",
-    "class-transformer": "^0.2.3",
+    "@nestjs/swagger": "^5.1.4",
+    "axios": "^0.21.4",
+    "class-transformer": "^0.4.0",
     "class-validator": "^0.12.2",
+    "fastify-swagger": "^4.12.6",
     "install": "^0.13.0",
     "mysql2": "^2.2.5",
     "npm": "^8.1.3",
@@ -36,7 +39,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
     "sequelize": "^5.22.3",
-    "sequelize-typescript": "^1.1.0"
+    "sequelize-typescript": "^1.1.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

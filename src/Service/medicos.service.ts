@@ -22,12 +22,15 @@ export class MedicosService {
 
     async obterUm(id: number): Promise<Medico> {
         const { Op } = require("sequelize");
-        return this.medicoModel.findOne({
+
+        const medicoObtido: Medico = await this.medicoModel.findOne({
             where: {
                 id: id,
-                ativo: 1
+                ativo: 1,
             }
         });
+
+        return medicoObtido;
     }
 
     async obterPorNome(NomeDoMedico: string): Promise<Medico[]> {
@@ -215,16 +218,21 @@ export class MedicosService {
         });
     }
 
-    async apagar(id: number) {
-        const medicoObtido: Medico = await this.obterUm(id);
-        if (medicoObtido) {
-            this.medicoModel.update({ ativo: 0 },
-                {
-                    where: {
-                        id: medicoObtido.id
-                    }
-                });
-        }
-    }
+    async apagar(id: number): Promise<Medico> {
 
+        const medicoObtido: Medico = await this.obterUm(id);
+
+        if (medicoObtido) {
+            if (medicoObtido.ativo == 1) {
+                this.medicoModel.update({ ativo: 0 },
+                    {
+                        where: {
+                            id: medicoObtido.id
+                        }
+                    });
+                return medicoObtido;
+            } 
+        }
+
+    }
 }

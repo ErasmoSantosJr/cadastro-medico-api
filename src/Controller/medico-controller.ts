@@ -214,8 +214,22 @@ export class MedicoController {
     }
 
     @Delete(':id')
-    async apagar(@Param() params) {
-        return this.medicoService.apagar(params.id);
+    async apagar(@Param() params): Promise<NestResponse> {
+
+        const medicoObtido = this.medicoService.apagar(params.id);
+
+        if (! await medicoObtido) {
+            throw new NotFoundException({
+                statusCode: HttpStatus.NOT_FOUND,
+                message: 'Médico(a) não encontrado'
+            });
+        }
+        return new NestResponseBuilder()
+        .comStatus(HttpStatus.OK)
+        .comBody([ "id: " + (await medicoObtido).id, "Nome: " + (await medicoObtido).nome])
+        .build();
+
     }
+
 
 }

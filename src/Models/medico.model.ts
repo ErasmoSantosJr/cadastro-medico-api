@@ -1,9 +1,19 @@
 import { Exclude } from "class-transformer";
-import { IsNotEmpty, IsString, MaxLength, Min, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Especialidade } from "./especialidade.model";
 
 @Table
 export class Medico extends Model<Medico> {
+
+  @Column({
+    type: DataType.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  })
+  id: number
+
 
   @Column({
     type: DataType.STRING(7),
@@ -19,7 +29,6 @@ export class Medico extends Model<Medico> {
     message: 'O número máximo permitido para o parâmetro crm é de 7 caracteres',
   })
   crm: string;
-
 
   @Column({
     type: DataType.STRING(120),
@@ -140,6 +149,33 @@ export class Medico extends Model<Medico> {
     toPlainOnly: true
   })
   ativo: number;
+
+  associate = models => {
+    Medico.belongsToMany(models.Especialidade, {
+        through: 'especialidade',
+        foreignKey: 'id'
+    });
+    Medico.belongsToMany(models.Especialidade, {
+        through: 'especialidadeSec',
+        foreignKey: 'id'
+    });
+};
+
+  superconstructor(medico?: Partial<Medico>) {
+    this.crm = medico.crm;
+    this.nome = medico.nome;
+    this.telefoneFixo = medico.telefoneFixo;
+    this.telefoneCelular = medico.telefoneCelular;
+    this.cep = medico.cep;
+    this.rua = medico.rua;
+    this.bairro = medico.bairro;
+    this.cidade = medico.cidade;
+    this.estado = medico.estado;
+    this.especialidade = medico.especialidade;
+    this.especialidadeSec = medico.especialidadeSec;
+    this.ativo = medico.ativo;
+  }
+
 }
 
 

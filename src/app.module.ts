@@ -1,5 +1,5 @@
 
-import { ClassSerializerInterceptor, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { SequelizeModule } from '@nestjs/sequelize';
@@ -7,9 +7,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FiltroDeExcecaoHttp } from './Common/filtro/filtro-de-excecao-http.filter';
+import { EspecialidadeController } from './Controller/especialidade-controller';
 import { MedicoController } from './Controller/medico-controller';
 import { TransformaRespostaInterceptor } from './core/http/transforma-resposta-interceptador';
+import { Especialidade } from './Models/especialidade.model';
 import { Medico } from './Models/medico.model';
+import { EspecialidadeService } from './Service/especialidade.service';
 import { MedicosService } from './Service/medicos.service';
 
 @Module({
@@ -17,17 +20,18 @@ import { MedicosService } from './Service/medicos.service';
     ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: 'database',
       port: 3306,
-      username: process.env.USUARIO_BANCO_DADOS,
-      password: process.env.SENHA_BANCO_DADOS,
-      database: 'dbHospital',
+      username: 'api_aplicacao',
+      password: '12345678',
+      database: 'dbhospital',
       autoLoadModels: true,
       synchronize: true,
     }),
+    SequelizeModule.forFeature([Especialidade]),
     SequelizeModule.forFeature([Medico])
   ],
-  controllers: [AppController, MedicoController],
+  controllers: [AppController, EspecialidadeController, MedicoController ],
 
   providers: [
     {
@@ -39,6 +43,7 @@ import { MedicosService } from './Service/medicos.service';
       useClass: TransformaRespostaInterceptor 
     },
     AppService,
-    MedicosService],
+    MedicosService,
+    EspecialidadeService],
 })
 export class AppModule { }
