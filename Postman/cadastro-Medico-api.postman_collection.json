@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "dd2378b6-93b8-457c-9f25-4a68b2514461",
+		"name": "cadastro-Medico-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Busca",
+					"item": [
+						{
+							"name": "Obter Todos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Nome",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/nome/Leticia",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"nome",
+										"Leticia"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por CRM",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/crm/456",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"crm",
+										"456"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Telefone Fixo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/telefoneFixo/987256626",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"telefoneFixo",
+										"987256626"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Telefone Celular",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/telefoneCelular/11987",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"telefoneCelular",
+										"11987"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por CEP",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/cep/06620295",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"cep",
+										"06620295"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Rua",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/rua/Rua Riachuelo",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"rua",
+										"Rua Riachuelo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Bairro",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/bairro/Sitio",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"bairro",
+										"Sitio"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Cidade",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/cidade/Jandira",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"cidade",
+										"Jandira"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Estado",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/estado/São Paulo",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"estado",
+										"São Paulo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Especialidade Primaria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/especialidade/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"especialidade",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Obter por Especialidade Secundaria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/medico/especialidadeSec/8",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"medico",
+										"especialidadeSec",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Criar Médico",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"crm\": \"987526\",\r\n    \"nome\": \"Paulo henirque Dr. Neuro\",\r\n    \"telefoneFixo\": \"11987256626\",\r\n    \"telefoneCelular\": \"11987256626\",\r\n    \"cep\": \"06620295\",\r\n    \"especialidade\": 1,\r\n    \"especialidadeSec\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/medico",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Médico",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"Leticia Dr. Neuro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/medico",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar Médico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/medico/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"medico",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Especilidade",
+			"item": [
+				{
+					"name": "Obter Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/especialidade",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidade"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grava Especialidade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Cirurgia de tórax\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/especialidade",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"especialidade"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Olá Nest",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		}
+	]
+}
